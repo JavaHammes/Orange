@@ -5,35 +5,24 @@ from PyQt6.QtWidgets import QWidget, QApplication, QLabel
 from PyQt6.QtCore import Qt
 
 from widgets.image import RImage
-
+from widgets.line import RLine
 
 class MainWidget(QWidget):
 
-    def __init__(self):
+    def __init__(self, parent=None):
         super().__init__()
 
-    def addImage(self, imagePath):
-        pixmap = QPixmap(imagePath)
-        scaled_pixmap = pixmap.scaled(300,300, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
+        self.widgets = list()
+        self.initUI()
+
+    def initUI(self):
+        #rimage = RImage(self, 500, 400, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
+        #self.widgets.append(rimage)
         
+        #rimage = RImage(self, 100, 200, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
+        #self.widgets.append(rimage)
 
-        label = QLabel(self)
-        label.setPixmap(scaled_pixmap)
-        label.move(200,200)
-
+        self.rline = RLine(self, 0, 0)
 
     def paintEvent(self, e):
-
-        qp = QPainter()
-        qp.begin(self)
-        self.drawBezierCurve(qp)
-        qp.end()
-
-    def drawBezierCurve(self, qp):
-
-        path = QPainterPath()
-        path.moveTo(30,30)
-        path.cubicTo(30,30,200,350,350,30)
-
-        qp.drawPath(path)
-
+        self.rline.paintLine()

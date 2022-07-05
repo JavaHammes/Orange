@@ -6,8 +6,8 @@ from PyQt6.QtCore import Qt
 
 class RImage(QLabel):
 
-    def __init__(self, x, y, width, height, path):
-        super().__init__(self)
+    def __init__(self, parent, x, y, width, height, path):
+        super().__init__(parent)
 
         self.x = x
         self.y = y
@@ -16,8 +16,8 @@ class RImage(QLabel):
         self.path = path
 
         pixmap = QPixmap(path)
-        scaled_pixmap = pixmap.scaled(self.width, self.height, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
+        scaled_pixmap = pixmap.scaled(width, height, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
 
         self.setPixmap(scaled_pixmap)
-        
-        self.move(x,y)
+       
+        self.move(x, y)

@@ -17,18 +17,8 @@ class MainWindow(QMainWindow):
 
         mainWidget = MainWidget()
         self.setCentralWidget(mainWidget)
-        mainWidget.addImage("/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
 
         self.setGeometry(300,300,350,250)
         self.setMinimumSize(300,300)
         self.setWindowTitle("Orange")
         self.show()
-
-def main():
-    app = QApplication(sys.argv)
-    mainWindow = MainWindow()
-    sys.exit(app.exec())
-
-if __name__ == "__main__":
-    main()
-
