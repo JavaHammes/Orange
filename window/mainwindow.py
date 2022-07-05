@@ -4,7 +4,7 @@ import sys
 from PyQt6.QtWidgets import QMainWindow, QMenu, QApplication, QTextEdit
 from PyQt6.QtGui import QAction, QIcon
 
-from mainwidget import MainWidget
+from window.mainwidget import MainWidget
 
 class MainWindow(QMainWindow):
 
@@ -18,9 +18,9 @@ class MainWindow(QMainWindow):
         mainWidget = MainWidget()
         self.setCentralWidget(mainWidget)
         mainWidget.addImage("/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
-        mainWidget.move(200,200)
 
         self.setGeometry(300,300,350,250)
+        self.setMinimumSize(300,300)
         self.setWindowTitle("Orange")
         self.show()
 

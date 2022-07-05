@@ -4,6 +4,8 @@ from PyQt6.QtGui import QPainter, QPainterPath, QPixmap
 from PyQt6.QtWidgets import QWidget, QApplication, QLabel
 from PyQt6.QtCore import Qt
 
+from widgets.image import RImage
+
 
 class MainWidget(QWidget):
 
@@ -17,7 +19,7 @@ class MainWidget(QWidget):
 
         label = QLabel(self)
         label.setPixmap(scaled_pixmap)
-
+        label.move(200,200)
 
 
     def paintEvent(self, e):
