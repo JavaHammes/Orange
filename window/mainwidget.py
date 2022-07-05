@@ -1,8 +1,6 @@
 #!/opt/homebrew/bin/python3
 
-from PyQt6.QtGui import QPainter, QPainterPath, QPixmap
-from PyQt6.QtWidgets import QWidget, QApplication, QLabel
-from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QWidget
 
 from widgets.image import RImage
 from widgets.line import RLine
@@ -16,13 +14,14 @@ class MainWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        #rimage = RImage(self, 500, 400, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
-        #self.widgets.append(rimage)
+        rimage_one = RImage(self, 1000, 400, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
+        self.widgets.append(rimage_one)
         
-        #rimage = RImage(self, 100, 200, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
-        #self.widgets.append(rimage)
+        rimage_two = RImage(self, 100, 200, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test.png")
+        self.widgets.append(rimage_two)
 
-        self.rline = RLine(self, 0, 0)
+        self.rline = RLine(self, rimage_one, rimage_two)
+        self.rline.calculateMidPoint(rimage_one)
 
     def paintEvent(self, e):
         self.rline.paintLine()

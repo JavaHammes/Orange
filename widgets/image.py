@@ -12,12 +12,28 @@ class RImage(QLabel):
         self.x = x
         self.y = y
         self.width = width
-        self.heiht = height
+        self.height = height
         self.path = path
 
-        pixmap = QPixmap(path)
-        scaled_pixmap = pixmap.scaled(width, height, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
+        self.move(self.x, self.y)
 
-        self.setPixmap(scaled_pixmap)
+        self.pixmap = QPixmap(path)
+        self.scaled_pixmap = self.pixmap.scaled(width, height, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
+        self.setPixmap(self.scaled_pixmap)
        
-        self.move(x, y)
+
+    def getPixmap(self):
+        return (self.scaled_pixmap)
+
+    def getX(self):
+        return (self.x)
+
+    def getY(self):
+        return (self.y)
+
+    def getWidth(self):
+        return (self.width)
+
+    def getHeight(self):
+        return (self.height)
+
