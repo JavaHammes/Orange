@@ -2,7 +2,7 @@
 
 from PyQt6.QtWidgets import QLabel
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QPoint
 
 class RImage(QLabel):
 
@@ -15,13 +15,14 @@ class RImage(QLabel):
         self.height = height
         self.path = path
 
+        self.oldPos = QPoint()
+
         self.move(self.x, self.y)
 
         self.pixmap = QPixmap(path)
         self.scaled_pixmap = self.pixmap.scaled(width, height, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
         self.setPixmap(self.scaled_pixmap)
        
-
     def getPixmap(self):
         return (self.scaled_pixmap)
 

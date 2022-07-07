@@ -2,12 +2,14 @@
 
 from PyQt6.QtGui import QPainter
 from PyQt6.QtCore import QLine, QPoint
+from PyQt6.QtWidgets import QWidget
 
 from widgets.image import RImage
 
-class RLine():
+class RLine(QWidget):
 
     def __init__(self, parent, widget_one, widget_two):
+        super().__init__(parent)
         
         self.parent = parent
         
@@ -32,11 +34,8 @@ class RLine():
         w = widget.getWidth()
         h = widget.getHeight()
         
-        print(x , y, w, h)
-
         mid_x = x + w/2 
         mid_y = y + h/2
 
-        print(QPoint(mid_x, mid_y))
         return (QPoint(mid_x, mid_y))
 
