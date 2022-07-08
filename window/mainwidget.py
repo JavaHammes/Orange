@@ -25,14 +25,15 @@ class MainWidget(QWidget):
         
         self.world.addWidget(self.rimage_one)
         self.world.addWidget(self.rimage_two)
-        self.world.addWidget(self.rline)
+        self.world.addLine(self.rline)
 
     def paintEvent(self, e):
         self.rline.paintLine()
 
+        super(MainWidget, self).paintEvent(e)
+
     def mousePressEvent(self, e):
         self.mousePressPos = None
-        self.mouseMovePos = None
         self.rightClickPressed = False
         if e.button() == Qt.MouseButton.RightButton:
             self.mousePressPos = e.globalPosition()
@@ -45,13 +46,10 @@ class MainWidget(QWidget):
         if self.rightClickPressed is True:
             moved = e.globalPosition() - self.mousePressPos
             self.world.translate(int(moved.x()), int(moved.y()))
+            self.world.translateLine(int(moved.x()), int(moved.y()))
             self.mousePressPos = e.globalPosition()
+            self.repaint()
         super(MainWidget, self).mouseMoveEvent(e)
 
-    def mouseReleaseEvent(self, e):
-        if self.mousePressPos is not None:
-            moved = e.globalPosition() - self.mousePressPos
-            self.world.translate(int(moved.x()), int(moved.y()))
 
-        super(MainWidget, self).mouseReleaseEvent(e)
    

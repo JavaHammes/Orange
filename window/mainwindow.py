@@ -19,6 +19,6 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(mainWidget)
 
         self.setGeometry(300,300,350,250)
-        self.setMinimumSize(300,300)
+        self.setMinimumSize(1400,800)
         self.setWindowTitle("Orange")
         self.show()

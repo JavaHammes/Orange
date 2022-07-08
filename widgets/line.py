@@ -39,3 +39,8 @@ class RLine(QWidget):
 
         return (QPoint(mid_x, mid_y))
 
+    def moveLine(self, x, y):
+        self.line.translate(x,y)
+
+    def getLine(self):
+        return (self.line)
