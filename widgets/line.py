@@ -25,6 +25,7 @@ class RLine(QWidget):
     def paintLine(self):
         painter = QPainter()
         painter.begin(self.parent)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.drawLine(self.line)
         painter.end()
 
@@ -41,6 +42,8 @@ class RLine(QWidget):
 
     def moveLine(self, x, y):
         self.line.translate(x,y)
+        self.point_one = self.line.p1()
+        self.point_two = self.line.p2()
 
     def moveEndPoint(self, mid_point):
         mid_point_one = self.calculateMidPoint(self.widget_one)
