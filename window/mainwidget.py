@@ -41,37 +41,26 @@ class MainWidget(QWidget):
 
     def mousePressEvent(self, e):
         self.mousePressPos = None
+        self.middleClickPressed = False
+        self.mouseRightPressPos = None
         self.rightClickPressed = False
-        self.mouseLeftPressPos = None
-        self.leftClickPressed = False
-        if e.button() == Qt.MouseButton.RightButton:
+        if e.button() == Qt.MouseButton.MiddleButton:
             self.mousePressPos = e.pos()
+            self.middleClickPressed = True
+        elif e.button() == Qt.MouseButton.RightButton:
+            self.mouseRightPressPos = e.pos()
             self.rightClickPressed = True
-        elif e.button() == Qt.MouseButton.LeftButton:
-            self.mouseLeftPressPos = e.pos()
-            self.leftClickPressed = True
 
     def mouseMoveEvent(self, e):
-        if self.rightClickPressed is True:
+        if self.middleClickPressed is True:
             moved = e.pos() - self.mousePressPos
             self.world.translate(int(moved.x()), int(moved.y()))
             self.mousePressPos = e.pos()
             self.repaint()
-        elif self.leftClickPressed is True:
-            moved = e.pos() - self.mouseLeftPressPos
+        elif self.rightClickPressed is True:
+            moved = e.pos() - self.mouseRightPressPos
             movedWidget = self.childAt(int(e.pos().x()), int(e.pos().y()))
             if movedWidget is not None:
                 self.world.translateSelectedWidget(movedWidget,int(moved.x()), int(moved.y()))
-            self.mouseLeftPressPos = e.pos()
+            self.mouseRightPressPos = e.pos()
             self.repaint()
-
-
-
-
-
-            #print("global pos click: ", e.globalPosition())
-            #print("local pos click: ", e.pos())
-            #print("global pos image: ", self.rimage_three.mapToGlobal(self.rimage_three.pos()))
-            #print("normal pos image: ", self.rimage_three.pos())
-            #print("child at: ", self.childAt(int(e.globalPosition().x()), int(e.globalPosition().y())))
-            #print("###########################")

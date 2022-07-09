@@ -43,12 +43,6 @@ class RLine(QWidget):
         self.line.translate(x,y)
 
     def moveEndPoint(self, mid_point):
-        #if self.point_one != mid_point:
-         #   print("mid point ONE changed", self.point_one, mid_point)
-          #  self.point_one = mid_point
-        #elif self.point_two != mid_point:
-        #print("mid point one: ", self.point_one, self.calculateMidPoint(self.widget_one))
-        #print("mid point two: ", self.point_two, self.calculateMidPoint(self.widget_two))
         mid_point_one = self.calculateMidPoint(self.widget_one)
         mid_point_two = self.calculateMidPoint(self.widget_two)
         if self.point_one != mid_point_one:
