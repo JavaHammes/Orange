@@ -22,6 +22,8 @@ class RImage(QLabel):
         self.pixmap = QPixmap(path)
         self.scaled_pixmap = self.pixmap.scaled(width, height, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
         self.setPixmap(self.scaled_pixmap)
+
+        self.lines = list()
        
     def getPixmap(self):
         return (self.scaled_pixmap)
@@ -38,3 +40,8 @@ class RImage(QLabel):
     def getHeight(self):
         return (self.height)
 
+    def addLine(self, rline):
+        self.lines.append(rline)
+
+    def getLines(self):
+        return (self.lines)

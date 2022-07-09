@@ -21,4 +21,5 @@ class MainWindow(QMainWindow):
         self.setGeometry(300,300,350,250)
         self.setMinimumSize(1400,800)
         self.setWindowTitle("Orange")
+        self.setStyleSheet("background-color: rgb(100,100,100);")
         self.show()

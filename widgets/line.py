@@ -29,8 +29,8 @@ class RLine(QWidget):
         painter.end()
 
     def calculateMidPoint(self, widget):
-        x = widget.getX()
-        y = widget.getY()
+        x = widget.pos().x()
+        y = widget.pos().y()
         w = widget.getWidth()
         h = widget.getHeight()
         
@@ -41,6 +41,22 @@ class RLine(QWidget):
 
     def moveLine(self, x, y):
         self.line.translate(x,y)
+
+    def moveEndPoint(self, mid_point):
+        #if self.point_one != mid_point:
+         #   print("mid point ONE changed", self.point_one, mid_point)
+          #  self.point_one = mid_point
+        #elif self.point_two != mid_point:
+        #print("mid point one: ", self.point_one, self.calculateMidPoint(self.widget_one))
+        #print("mid point two: ", self.point_two, self.calculateMidPoint(self.widget_two))
+        mid_point_one = self.calculateMidPoint(self.widget_one)
+        mid_point_two = self.calculateMidPoint(self.widget_two)
+        if self.point_one != mid_point_one:
+            self.point_one = mid_point
+        elif self.point_two != mid_point_two:
+            self.point_two = mid_point
+
+        self.line = QLine(self.point_one, self.point_two)
 
     def getLine(self):
         return (self.line)
