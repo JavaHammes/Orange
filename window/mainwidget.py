@@ -2,6 +2,7 @@
 
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtCore import Qt, QEvent, QPoint
+from PyQt6.QtGui import QCursor
 
 from widgets.image import RImage
 from widgets.line import RLine
@@ -13,10 +14,11 @@ class MainWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__()
 
-        self.world = World()
         self.initUI()
 
     def initUI(self):
+        self.world = World()
+
         self.rimage_one = RImage(self, -700, 300, 400, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test1.png")
         self.rimage_two = RImage(self, 100, 200, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test2.png")
         self.rimage_three = RImage(self, 1000, 400, 300, 300, "/Users/alexander/Desktop/Dokumente/Meine Programme/osint/save/pictures/test3.png")
@@ -34,6 +36,10 @@ class MainWidget(QWidget):
         self.world.addWidget(self.rimage_three)
         self.world.addLine(self.rline)
         self.world.addLine(self.rline_two)
+
+        self.widget_one = None
+        self.widget_two = None
+        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
 
     def paintEvent(self, e):
         for line in self.world.getLines():
@@ -64,3 +70,24 @@ class MainWidget(QWidget):
                 self.world.translateSelectedWidget(movedWidget,int(moved.x()), int(moved.y()))
             self.mouseRightPressPos = e.pos()
             self.repaint()
+
+    def keyPressEvent(self, e):
+        spacebar = 32
+        key = e.key()
+        mousePos = self.mapFromGlobal(QCursor.pos())
+        child = self.childAt(int(mousePos.x()), int(mousePos.y()))
+        if key == spacebar:
+            if child == None:
+                return
+
+            if self.widget_one == None:
+                self.widget_one = child 
+            elif self.widget_two == None:
+                self.widget_two = child
+                newLine = RLine(self, self.widget_one, self.widget_two)
+                self.world.addLine(newLine)
+                self.widget_one.addLine(newLine)
+                self.widget_two.addLine(newLine)
+                self.widget_one = None
+                self.widget_two = None
+                self.repaint()
