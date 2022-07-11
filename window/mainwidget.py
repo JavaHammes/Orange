@@ -91,3 +91,4 @@ class MainWidget(QWidget):
                 self.widget_one = None
                 self.widget_two = None
                 self.repaint()
+
