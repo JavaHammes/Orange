@@ -7,7 +7,6 @@ from PyQt6.QtWidgets import QMainWindow, QMenu, QApplication, QTextEdit
 from PyQt6.QtGui import QAction, QIcon
 
 from window.mainwidget import MainWidget
-from others.save import Save
 
 class MainWindow(QMainWindow):
 
@@ -18,16 +17,7 @@ class MainWindow(QMainWindow):
 
     def initUI(self):
 
-        self.save = Save()
-        self.filepath = self.save.convertToRelativePath("../save/mainwidget.obj")
-
-        #self.mainWidget = None
-        #if exists(self.filepath):
-        print(self.save.loadObjectFromFile(self.filepath))
-        print(exists(self.filepath))
-        #else:
         self.mainWidget = MainWidget()
-
 
         self.setCentralWidget(self.mainWidget)
 
@@ -38,4 +28,4 @@ class MainWindow(QMainWindow):
         self.show()
 
     def closeEvent(self, e):
-       self.save.writeObjectToFile(self.mainWidget, self.filepath) 
+       self.save.guiSave(self.mainWidget) 
